@@ -1170,3 +1170,5 @@
 
 (( ${#p10k_config_opts} )) && setopt ${p10k_config_opts[@]}
 'builtin' 'unset' 'p10k_config_opts'
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
