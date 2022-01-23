@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -o errexit -o pipefail
+
+main() {
+    parse_args "$@"
+    run_entr
+}
+
+parse_args() {
+    function print_usage() {
+        cat <<END
+
+Build and run after source (git) files have changed
+
+USAGE
+    ${0##*/} [OPTIONS]
+
+OPTIONS
+    -h, --help - Print this help
+    --build-dir <path>
+    --target <target name>
+    --exclude <excluded  source files>
+END
+    }
+
+    if [[ "$#" -eq 0 ]]; then
+        >&2 print_usage
+        exit 1
+    fi
+
+    local -a options
+    # Sanitize options by replacing '=' with newline
+    readarray -t options < <(printf "%s\n" "${@//=/$'\n'}")
+    set -- "${options[@]}"
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            -h|--help)
+                print_usage
+                exit 0
+                ;;
+            -b|--build-dir)
+                readonly build_dir="$(realpath "$2")"
+                shift
+                ;;
+            -t|--target)
+                readonly target="$2"
+                shift
+                ;;
+            -e|--exclude)
+                readonly exclude="$2"
+                shift
+                ;;
+            --) # End of flags
+                shift
+                break
+                ;;
+            -*|--*) # Invalid flags
+                >&2 echo "Error: Unsupported flag '$1'"
+                >&2 print_usage
+                exit 1
+                ;;
+        esac
+        shift
+    done
+
+    if [[ -z "${build_dir:-}" ]]; then
+        >&2 echo "Error: '--build-dir' is missing"
+        >&2 print_usage
+        exit 1
+    fi
+
+    if [[ -z "${target:-}" ]]; then
+        >&2 echo "Error: '--target' is missing"
+        >&2 print_usage
+        exit 1
+    fi
+
+}
+
+run_entr() {
+    git entr -e "$exclude" buildNRun.sh 8 "${build_dir}" "${target}"
+}
+
+main "$@"
