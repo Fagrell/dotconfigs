@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -o errexit -o pipefail
+
+main() {
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            -e|--exclude)
+                readonly grep_exclude="$2"
+                shift
+                ;;
+            -*|--*) # Invalid flags
+                >&2 echo "Error: Unsupported flag '$1'"
+                exit 1
+                ;;
+            *)
+                break
+        esac
+        shift
+    done
+
+    readonly entr_files=$(git ls-files -cdmo --exclude-standard)
+    if [ -z ${grep_exclude+x} ] || [ -z ${grep_exclude} ]; then
+        echo "${entr_files}" | entr -dr "$@"
+    else
+        echo "${entr_files}" | grep -v "$grep_exclude" | entr -dr "$@"
+    fi
+}
+
+main "$@"
