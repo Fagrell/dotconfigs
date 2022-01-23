@@ -108,6 +108,5 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
