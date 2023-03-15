@@ -1,17 +1,19 @@
 #!/usr/bin/bash
 
-sudo apt install zsh 
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
+. "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
+nix-channel --add https://nixos.org/channels/nixpkgs-22.05-darwin/ nixpkgs
+nix-channel --update
+export NIX_PATH="${HOME}/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}"
+nix-shell '<home-manager>' -A install
 
-sudo apt install fzf ripgrep entr tmux
-
-rm ~/.tmux.conf ~/.p10k.zsh ~/.zshrc ~/.config/gh/config.yml ~/.fzf.zsh
-mkdir -p ~/.config/gh/
-
-ln -s ~/dotconfigs/tmux.conf ~/.tmux.conf
-ln -s ~/dotconfigs/p10k.zsh ~/.p10k.zsh
-ln -s ~/dotconfigs/zshrc ~/.zshrc
-ln -s ~/dotconfigs/config/gh/config.yml ~/.config/gh/config.yml
-ln -s ~/dotconfigs/fzf.zsh ~/.fzf.zsh
+for VAR in USER HOME; do
+  sed -i "s|\${${VAR}}|${!VAR}|g" "${HOME}/dotconfigs/home.nix"
+done
+rm "${HOME}/.config/nixpkgs/home.nix"
+ln -s ~/dotconfigs/home.nix "${HOME}/.config/nixpkgs/home.nix"
+nix-env --set-flag priority 6 nix
+echo "[ -f ${HOME}/.nix-profile/etc/profile.d/nix.sh ] && source ${HOME}/.nix-profile/etc/profile.d/nix.sh
+      home-manager switch" >> ~/.bashrc

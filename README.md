@@ -1,17 +1,10 @@
 # dotconfigs
-Config files for a linux workspace
+Config files for a linux workspace. Moved to Nix Package Manager & Home Manager.
 
 # Tools
-* zsh, oh-my-zsh with powerlevel10k theme and tmux
-* fzf - https://github.com/junegunn/fzf
-* ripgrep - https://github.com/BurntSushi/ripgrep
-* entr - https://github.com/eradman/entr
-* GitHub CLI - https://github.com/cli/cli
+* See `home.nix` for all tools
 
-# How to use configs
-* `ln -s ~/dotconfigs/tmux.conf ~/.tmux.conf`
-* `ln -s ~/dotconfigs/p10k.zsh ~/.p10k.zsh`
-* `ln -s ~/dotconfigs/zshrc ~/.zshrc`
-* `ln -s ~/dotconfigs/config/gh/config.yml ~/.config/gh/config.yml`
-* `ln -s ~/dotconfigs/fzf.zsh ~/.fzf.zsh`
-
+# How to install
+```
+$ ./install.sh # run once from a bash shell
+```
