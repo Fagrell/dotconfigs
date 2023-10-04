@@ -15,9 +15,11 @@
     pkgs.bit
     pkgs.git
     pkgs.cmake
+    pkgs.just
+    pkgs.cloc
   ];
 
-  home.stateVersion = "22.05";
+  home.stateVersion = "23.05";
   programs.home-manager.enable = true;
 
   programs.bash = {
@@ -50,6 +52,8 @@
       hm = "home-manager";
       sw = "home-manager switch";
       vs = "codium --no-sandbox";
+      dockerid = "docker container ls | awk 'FNR == 2 {print $1}'";
+      dockerxsh = "docker exec -it $(dockerid) sh";
     };
 
     history = {
@@ -91,6 +95,7 @@
         aliases = {
           co = "!id=\"\$(gh pr list -L100 | fzf | cut -f1)\"; [ -n \"\${id}\" ] && gh pr checkout \"\${id}\"";
           o = "pr view --web";
+          wsclone = "repo clone wavestore-com/$1";
         };
     };
   };
