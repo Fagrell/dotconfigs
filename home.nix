@@ -9,7 +9,7 @@
   home.packages = [
     pkgs.ripgrep
     pkgs.watchexec
-    pkgs.exa
+    pkgs.eza
     pkgs.tldr
     pkgs.bat
     pkgs.bit
@@ -17,9 +17,10 @@
     pkgs.cmake
     pkgs.just
     pkgs.cloc
+    pkgs.nmap
   ];
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 
   programs.bash = {
@@ -42,16 +43,21 @@
     autocd = true;
     enableCompletion = true;
     enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
+    initExtra = ''
+      # Bind gpg-agent to this TTY if gpg commands are used.
+      export GPG_TTY=$(tty)
+    '';
     shellAliases = {
-      ls = "exa";
-      la = "exa -la";
+      ls = "eza";
+      la = "eza -la";
       eg = "tldr";
       u = "cd ..";
       cat = "bat";
       hm = "home-manager";
       sw = "home-manager switch";
       vs = "codium --no-sandbox";
+      tree = "eza --tree"
       dockerid = "docker container ls | awk 'FNR == 2 {print $1}'";
       dockerxsh = "docker exec -it $(dockerid) sh";
     };
