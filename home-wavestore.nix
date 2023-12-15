@@ -13,4 +13,13 @@
       user.signingkey = "D7805B5B2AB98C7B";
     };
   };
+
+  programs.gh = {
+    settings = {
+        aliases = {
+          wsclone = "repo clone wavestore-com/$1";
+        };
+    };
+  };
+
 }

@@ -57,7 +57,7 @@
       hm = "home-manager";
       sw = "home-manager switch";
       vs = "codium --no-sandbox";
-      tree = "eza --tree"
+      tree = "eza --tree";
       dockerid = "docker container ls | awk 'FNR == 2 {print $1}'";
       dockerxsh = "docker exec -it $(dockerid) sh";
     };
@@ -101,7 +101,6 @@
         aliases = {
           co = "!id=\"\$(gh pr list -L100 | fzf | cut -f1)\"; [ -n \"\${id}\" ] && gh pr checkout \"\${id}\"";
           o = "pr view --web";
-          wsclone = "repo clone wavestore-com/$1";
         };
     };
   };
