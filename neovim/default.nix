@@ -28,12 +28,14 @@ in
     plugins = with pkgs.vimPlugins; [
       catppuccin-nvim
       toggleterm-nvim
+      wrapping-nvim
       telescope-cheat-nvim
       telescope-fzf-native-nvim
       telescope-nvim
       telescope-project-nvim
       telescope-ui-select-nvim
       (fromGitHub "harpoon2" "ThePrimeagen/harpoon")
+      (fromGitHub "main" "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim")
       nvim-treesitter-context
       nvim-treesitter.withAllGrammars
       nvim-lspconfig
@@ -52,14 +54,15 @@ in
           ./.
           + "/${module}.lua");
       luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
-        "harpoon"
-        "keymaps"
-	"init"
-	"options"
-	"telescope"
-	"treesitter"
-	"lsp"
-	"toggleterm"
+          "harpoon"
+          "keymaps"
+          "init"
+          "options"
+          "telescope"
+          "treesitter"
+          "lsp"
+          "toggleterm"
+          "wrapping"
 
      ]);
     in ''

@@ -24,7 +24,8 @@ local options = {
   scrolloff = 8,
   signcolumn = "yes",
 
-  colorcolumn = "80",
+  colorcolumn = "120",
+  textwidth = 120,
 
   updatetime = 50,
 

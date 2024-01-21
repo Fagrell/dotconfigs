@@ -28,8 +28,8 @@ vmap("J", ":m '>+1<CR>gv=gv")
 vmap("K", ":m '<-2<CR>gv=gv")
 nmap("n", "nzzzv")
 nmap("N", "Nzzzv")
-nmap("<C-j>", "<C-d>zz")
-nmap("<C-k>", "<C-u>zz")
+nmap("<A-j>", "<C-d>zz")
+nmap("<A-k>", "<C-u>zz")
 
 -- Telescope
 local telescope = require("telescope.builtin")
@@ -46,7 +46,6 @@ local harpoon = require("harpoon")
 nmap("<leader>a", function() harpoon:list():append() end)
 nmap("<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
-
 nmap("<leader>j", function() harpoon:list():select(1) end)
 nmap("<leader>k", function() harpoon:list():select(2) end)
 nmap("<leader>l", function() harpoon:list():select(3) end)
@@ -55,4 +54,5 @@ nmap("<leader>;", function() harpoon:list():select(4) end)
 nmap("<leader>u", function() harpoon:list():prev() end)
 nmap("<leader>i", function() harpoon:list():next() end)
 
-
+-- LSP
+nmap("<leader>td", ":ToggleDiag<CR>")

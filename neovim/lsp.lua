@@ -31,7 +31,6 @@ local on_attach = function(client, bufnr)
   map('gD', vim.lsp.buf.declaration, 'Go to Declaration')
   map('gd', vim.lsp.buf.definition, 'Go to Definition')
   map('gr', vim.lsp.buf.references, 'References')
-  map('<leader>s', '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch between Source and Header')
 
 
   -- vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format({ async = true })]])
@@ -42,7 +41,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 require('lspconfig')['clangd'].setup {
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
-    vim.keymap.set('n', '<leader>ch', '<cmd>ClangdSwitchSourceHeader<CR>', { buffer = bufnr, silent = true, desc = 'Switch Header/Source' })
+    vim.keymap.set('n', '<leader>s', '<cmd>ClangdSwitchSourceHeader<CR>', { buffer = bufnr, silent = true, desc = 'Switch Header/Source' })
   end,
   capabilities = capabilities,
 }
@@ -68,4 +67,6 @@ require('lspconfig')['ltex'].setup {
     },
   },
 }
+
+require('toggle_lsp_diagnostics').init()
 
