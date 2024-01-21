@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./neovim/default.nix
+  ];
+
   targets.genericLinux.enable = true;
 
   home.username = "alex";
@@ -18,6 +22,10 @@
     pkgs.just
     pkgs.cloc
     pkgs.nmap
+    pkgs.llvmPackages_17.clang-unwrapped
+    pkgs.cargo
+    pkgs.rustc
+    pkgs.rustfmt
   ];
 
   home.stateVersion = "23.11";
@@ -35,6 +43,7 @@
     aliases = {
       create = "!git checkout -b \"$1\" $(git rev-parse --abbrev-ref origin/HEAD) #";
       fork = "!git clone \"$1\" . && git config remote.origin.pushurl \"$2\" #";
+      grep = "rg";
     };
   };
 
@@ -60,6 +69,8 @@
       tree = "eza --tree";
       dockerid = "docker container ls | awk 'FNR == 2 {print $1}'";
       dockerxsh = "docker exec -it $(dockerid) sh";
+      grep = "rg";
+      e = "vim .";
     };
 
     history = {
