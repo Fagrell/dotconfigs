@@ -22,10 +22,13 @@
     pkgs.just
     pkgs.cloc
     pkgs.nmap
-    pkgs.llvmPackages_17.clang-unwrapped
+    pkgs.clang_17
+    pkgs.clang-tools_17
     pkgs.cargo
     pkgs.rustc
     pkgs.rustfmt
+    pkgs.fd
+    pkgs.xclip
   ];
 
   home.stateVersion = "23.11";

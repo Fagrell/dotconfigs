@@ -29,7 +29,6 @@ in
       catppuccin-nvim
       toggleterm-nvim
       wrapping-nvim
-      telescope-cheat-nvim
       telescope-fzf-native-nvim
       telescope-nvim
       telescope-project-nvim

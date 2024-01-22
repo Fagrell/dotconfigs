@@ -62,8 +62,6 @@ require('lspconfig')['ltex'].setup {
     ltex = {
       language = 'en-GB',
       checkFrequency = "save",
-      disabledRules = { ['en-GB'] = disabledRules },
-      dictionary = { ['en-GB'] = words },
     },
   },
 }

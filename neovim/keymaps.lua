@@ -31,6 +31,18 @@ nmap("N", "Nzzzv")
 nmap("<A-j>", "<C-d>zz")
 nmap("<A-k>", "<C-u>zz")
 
+-- Copy to clipboard
+vmap("<leader>y", "\"+y")
+nmap("<leader>Y", "\"+g_")
+nmap("<leader>y", "\"+y")
+nmap("<leader>yy", "\"+yy")
+
+-- Paste from clipboard
+nmap("<leader>p", "\"+p")
+nmap("<leader>P", "\"+P")
+vmap("<leader>p", "\"+p")
+vmap("<leader>P", "\"+P")
+
 -- Telescope
 local telescope = require("telescope.builtin")
 

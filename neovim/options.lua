@@ -25,11 +25,12 @@ local options = {
   signcolumn = "yes",
 
   colorcolumn = "120",
-  textwidth = 120,
 
   updatetime = 50,
 
   shell = "zsh",
+
+  listchars = { tab = " ", trail = "·" },
 }
 
 for k, v in pairs(options) do
