@@ -22,8 +22,8 @@
     pkgs.just
     pkgs.cloc
     pkgs.nmap
-    pkgs.clang_17
-    pkgs.clang-tools_17
+    pkgs.clang
+    pkgs.clang-tools
     pkgs.cargo
     pkgs.rustc
     pkgs.rustfmt

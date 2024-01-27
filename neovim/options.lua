@@ -1,10 +1,10 @@
 vim.cmd("colorscheme catppuccin")
 
 local options = {
-  timeoutlen = 800, 
+  timeoutlen = 800,
   number = true,
   relativenumber = true,
-  
+
   tabstop = 4,
   softtabstop = 4,
   shiftwidth = 4,
@@ -30,9 +30,14 @@ local options = {
 
   shell = "zsh",
 
-  listchars = { tab = " ", trail = "·" },
+  list = true,
+  listchars = { tab = " ", trail = "·", space = "·"},
 }
+
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.g.netrw_banner = 0
+

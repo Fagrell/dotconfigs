@@ -41,10 +41,7 @@ in
 
       # Completion
       nvim-cmp
-      cmp-buffer
-      cmp-cmdline
       cmp-nvim-lsp
-      cmp-path
     ];
 
     extraConfig = let

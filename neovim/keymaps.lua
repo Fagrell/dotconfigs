@@ -68,3 +68,4 @@ nmap("<leader>i", function() harpoon:list():next() end)
 
 -- LSP
 nmap("<leader>td", ":ToggleDiag<CR>")
+

@@ -4,7 +4,7 @@ telescope.setup {
   pickers = {
     current_buffer_fuzzy_find = {
       previewer = false,
-      sorting_strategy = 'ascending',
+      sorting_strategy = "ascending",
     },
   },
   extensions = {
@@ -19,7 +19,7 @@ telescope.setup {
   },
 }
 
-telescope.load_extension('fzf')
-telescope.load_extension('project')
-telescope.load_extension('ui-select')
+telescope.load_extension("fzf")
+telescope.load_extension("project")
+telescope.load_extension("ui-select")
 
