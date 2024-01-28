@@ -9,11 +9,25 @@ let
       ref = ref;
     };
   };
-in
 
+  luaRequire = module: builtins.readFile (builtins.toString ./. + "./${module}.lua");
+
+  luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
+          "harpoon"
+          "keymaps"
+          "init"
+          "options"
+          "telescope"
+          "treesitter"
+          "lsp"
+          "toggleterm"
+          "wrapping"
+  ]);
+in
 {
   programs.neovim = {
     enable = true;
+    viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
@@ -44,24 +58,8 @@ in
       cmp-nvim-lsp
     ];
 
-    extraConfig = let
-      luaRequire = module:
-        builtins.readFile (builtins.toString
-          ./.
-          + "/${module}.lua");
-      luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
-          "harpoon"
-          "keymaps"
-          "init"
-          "options"
-          "telescope"
-          "treesitter"
-          "lsp"
-          "toggleterm"
-          "wrapping"
-
-     ]);
-    in ''
+    extraConfig =
+    ''
       lua <<
       ${luaConfig}
     '';
