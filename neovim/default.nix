@@ -10,7 +10,7 @@ let
     };
   };
 
-  luaRequire = module: builtins.readFile (builtins.toString ./. + "./${module}.lua");
+  luaRequire = module: builtins.readFile (builtins.toString ./. + "/${module}.lua");
 
   luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
           "harpoon"
@@ -52,6 +52,7 @@ in
       nvim-treesitter-context
       nvim-treesitter.withAllGrammars
       nvim-lspconfig
+      plenary-nvim
 
       # Completion
       nvim-cmp

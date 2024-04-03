@@ -29,6 +29,9 @@
     pkgs.rustfmt
     pkgs.fd
     pkgs.xclip
+    pkgs.inetutils
+    pkgs.rust-analyzer
+    pkgs.direnv
   ];
 
   home.stateVersion = "23.11";
@@ -47,6 +50,13 @@
       create = "!git checkout -b \"$1\" $(git rev-parse --abbrev-ref origin/HEAD) #";
       fork = "!git clone \"$1\" . && git config remote.origin.pushurl \"$2\" #";
       grep = "rg";
+      realblame = "!git blame -w -C -C -C";
+      safeforce = "!git push --force-with-lease";
+    };
+    extraConfig = {
+        rerere.enabled = true;
+        branch.sort = "committerdate";
+        column.ui = "auto";
     };
   };
 
@@ -59,6 +69,8 @@
     initExtra = ''
       # Bind gpg-agent to this TTY if gpg commands are used.
       export GPG_TTY=$(tty)
+      bindkey -M viins 'kj' vi-cmd-mode
+      eval "$(direnv hook zsh)"
     '';
     shellAliases = {
       ls = "eza";
@@ -84,6 +96,10 @@
 
     oh-my-zsh = {
         enable = true;
+        plugins = [
+          "vi-mode"
+          "git"
+        ];
     };
 
     plugins = [

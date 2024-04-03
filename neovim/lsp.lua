@@ -46,7 +46,7 @@ require('lspconfig')['clangd'].setup {
   capabilities = capabilities,
 }
 
-local servers = { 'dartls', 'rust_analyzer' }
+local servers = { 'dartls', 'rust_analyzer'}
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,

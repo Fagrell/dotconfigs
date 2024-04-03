@@ -55,7 +55,7 @@ nmap("<leader>fb", telescope.buffers, "Find buffers")
 -- Harpoon
 local harpoon = require("harpoon")
 
-nmap("<leader>a", function() harpoon:list():append() end)
+nmap("<leader>a", function() harpoon:list():add() end)
 nmap("<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
 nmap("<leader>j", function() harpoon:list():select(1) end)
