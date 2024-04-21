@@ -32,10 +32,14 @@
     pkgs.inetutils
     pkgs.rust-analyzer
     pkgs.direnv
+    pkgs.chromium
   ];
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
+  home.sessionVariables = {
+    CHROME_EXECUTABLE = pkgs.chromium.outPath + "/bin/chromium";
+  };
 
   programs.bash = {
     enable = true;
