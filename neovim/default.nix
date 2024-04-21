@@ -22,6 +22,7 @@ let
           "lsp"
           "toggleterm"
           "wrapping"
+          "surround"
   ]);
 in
 {
@@ -52,6 +53,7 @@ in
       nvim-treesitter-context
       nvim-treesitter.withAllGrammars
       nvim-lspconfig
+      nvim-surround
       plenary-nvim
 
       # Completion
