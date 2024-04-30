@@ -33,6 +33,7 @@
     pkgs.rust-analyzer
     pkgs.direnv
     pkgs.chromium
+    pkgs.delta
   ];
 
   home.stateVersion = "23.11";
@@ -48,6 +49,24 @@
     };
   };
 
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "mocha";
+    };
+    themes = {
+         mocha = {
+          src = pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "bat";
+            rev = "d714cc1d358ea51bfc02550dabab693f70cccea0";
+            sha256 = "sha256-Q5B4NDrfCIK3UAMs94vdXnR42k4AXCqZz6sRn8bzmf4=";
+          };
+          file = "themes/Catppuccin Mocha.tmTheme";
+       };
+    };
+  };
+
   programs.git = {
     enable = true;
     aliases = {
@@ -57,10 +76,52 @@
       realblame = "!git blame -w -C -C -C";
       safeforce = "!git push --force-with-lease";
     };
+    delta.enable = true;
     extraConfig = {
-        rerere.enabled = true;
-        branch.sort = "committerdate";
-        column.ui = "auto";
+      rerere.enabled = true;
+      user.useConfigOnly = true;
+      branch.sort = "committerdate";
+      column.ui = "auto";
+      push = {
+        autoSetupRemote = true;
+        default = "current";
+      };
+      delta = {
+        features = "catppuccin-mocha";
+        navigate = true;
+        side-by-side = true;
+      };
+      fetch.pruneTags = true;
+      merge = {
+        tool = "vimdiff";
+        conflictstyle = "diff3";
+      };
+      diff = {
+        tool = "vimdiff";
+        prompt = "false";
+        algorithm = "histogram";
+      };
+      difftool = {prompt = false;};
+      mergetool = {prompt = false;};
+      init = {defaultBranch = "main";};
+      gpg.format = "ssh";
+      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+    };
+    includes = [
+      {
+        path = "~/dotconfigs/themes.gitconfig";
+      }
+      {
+        condition = "gitdir:~/dotconfigs/**";
+        contents = {
+          user.email = "fagrell@outlook.com";
+          user.signingkey = "~/.ssh/id_rsa.pub.personal";
+          core.sshCommand = "ssh -i ~/.ssh/id_rsa.pub.personal";
+        };
+      }
+    ];
+    signing = {
+      signByDefault = true;
     };
   };
 

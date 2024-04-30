@@ -1,4 +1,4 @@
-vim.cmd("colorscheme catppuccin")
+vim.cmd.colorscheme "catppuccin"
 
 local options = {
   timeoutlen = 800,
