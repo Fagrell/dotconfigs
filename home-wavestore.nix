@@ -9,8 +9,10 @@
     userName = "Alexander Fagrell";
     userEmail = "alexander.fagrell@wavestore.com";
     extraConfig = {
+      gpg.format = "ssh";
       commit.gpgsign = true;
-      user.signingkey = "D7805B5B2AB98C7B";
+      tag.gpgSign = true;
+      user.signingkey = "/home/alex/.ssh/id_wavestore.pub";
     };
   };
 
