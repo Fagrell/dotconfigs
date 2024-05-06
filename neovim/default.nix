@@ -23,6 +23,7 @@ let
           "toggleterm"
           "wrapping"
           "surround"
+          "cmp"
   ]);
 in
 {
@@ -59,6 +60,9 @@ in
       # Completion
       nvim-cmp
       cmp-nvim-lsp
+      cmp-buffer
+      cmp-cmdline
+      cmp-path
     ];
 
     extraConfig =
