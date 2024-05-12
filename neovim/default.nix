@@ -24,6 +24,7 @@ let
           "wrapping"
           "surround"
           "cmp"
+          "oil"
   ]);
 in
 {
@@ -49,6 +50,7 @@ in
       telescope-nvim
       telescope-project-nvim
       telescope-ui-select-nvim
+      telescope-zoxide
       (fromGitHub "harpoon2" "ThePrimeagen/harpoon")
       (fromGitHub "main" "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim")
       nvim-treesitter-context
@@ -56,6 +58,8 @@ in
       nvim-lspconfig
       nvim-surround
       plenary-nvim
+      oil-nvim
+      nvim-web-devicons
 
       # Completion
       nvim-cmp

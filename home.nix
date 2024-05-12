@@ -34,6 +34,7 @@
     pkgs.direnv
     pkgs.chromium
     pkgs.delta
+    pkgs.unzip
   ];
 
   home.stateVersion = "23.11";

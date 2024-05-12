@@ -18,7 +18,8 @@ end
 
 -- Global ones
 vim.g.mapleader = " "
-nmap("<leader>pv", vim.cmd.Ex)
+local oil = require("oil")
+nmap("<leader>pv", function() oil.open() end)
 imap("kj", "<esc>")
 vmap("kj", "<esc>")
 cmap("kj", "<C-C>")
@@ -51,6 +52,8 @@ nmap("<leader>fs", telescope.git_files, "Find files")
 nmap("<leader>fr", telescope.oldfiles, "Find recently opened files")
 nmap("<leader>fg", telescope.live_grep, "Grep")
 nmap("<leader>fb", telescope.buffers, "Find buffers")
+nmap("<leader>cd", require("telescope").extensions.zoxide.list, "Change directory")
+
 
 -- Harpoon
 local harpoon = require("harpoon")

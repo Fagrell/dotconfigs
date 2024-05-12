@@ -16,10 +16,21 @@ telescope.setup {
     ["ui-select"] = {
       require("telescope.themes").get_cursor(),
     },
+    zoxide = {
+      prompt_title = "[ Change directory to... ]",
+      mappings = {
+        default = {
+          after_action = function(selection)
+            vim.cmd("Oil " .. selection.path)
+            vim.api.nvim_feedkeys("_", "", false)
+          end
+        },
+      },
+    }
   },
 }
 
 telescope.load_extension("fzf")
 telescope.load_extension("project")
 telescope.load_extension("ui-select")
-
+telescope.load_extension("zoxide")
