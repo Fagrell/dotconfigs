@@ -25,6 +25,7 @@ let
           "surround"
           "cmp"
           "oil"
+          "comment"
   ]);
 in
 {
@@ -57,6 +58,7 @@ in
       nvim-treesitter.withAllGrammars
       nvim-lspconfig
       nvim-surround
+      comment-nvim
       plenary-nvim
       oil-nvim
       nvim-web-devicons
