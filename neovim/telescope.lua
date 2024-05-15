@@ -6,6 +6,16 @@ telescope.setup {
       previewer = false,
       sorting_strategy = "ascending",
     },
+    find_files = {
+      find_command = {
+        "fd",
+        "--type",
+        "f",
+        "--hidden",
+        "--exclude",
+        ".git",
+      },
+    },
   },
   extensions = {
     project = {
