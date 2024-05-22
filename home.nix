@@ -130,7 +130,6 @@
     enable = true;
     autocd = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
     initExtra = ''
       # Bind gpg-agent to this TTY if gpg commands are used.
@@ -199,7 +198,7 @@
         prompt = "enabled";
         editor = "!!null code --wait";
         aliases = {
-          co = "!id=\"\$(gh pr list -L100 | fzf | cut -f1)\"; [ -n \"\${id}\" ] && gh pr checkout \"\${id}\"";
+          co = "!GH_FORCE_TTY=49% gh pr list | rg '#' --color=never | fzf --ansi --preview 'GH_FORCE_TTY=$FZF_PREVIEW_COLUMNS gh pr view {1}' | rg '#(\\d+)' -or '$1' | xargs gh pr checkout";
           o = "pr view --web";
         };
     };
