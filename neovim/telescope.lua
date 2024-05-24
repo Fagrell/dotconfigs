@@ -31,7 +31,9 @@ telescope.setup {
       mappings = {
         default = {
           after_action = function(selection)
-            vim.cmd("Oil " .. selection.path)
+            local path = selection.path
+            vim.cmd("Oil " .. path)
+            vim.cmd("1TermExec open=0 cmd='z " .. path .. "'")
             vim.api.nvim_feedkeys("_", "", false)
           end
         },
