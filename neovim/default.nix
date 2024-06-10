@@ -26,6 +26,7 @@ let
           "cmp"
           "oil"
           "comment"
+          "lualine"
   ]);
 in
 {
@@ -62,6 +63,7 @@ in
       plenary-nvim
       oil-nvim
       nvim-web-devicons
+      lualine-nvim
 
       # Completion
       nvim-cmp

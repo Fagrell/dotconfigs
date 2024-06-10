@@ -33,7 +33,7 @@ telescope.setup {
           after_action = function(selection)
             local path = selection.path
             vim.cmd("Oil " .. path)
-            vim.cmd("1TermExec open=0 cmd='z " .. path .. "'")
+            vim.cmd("1TermExec open=0 cmd=';z " .. path .. "'")
             vim.api.nvim_feedkeys("_", "", false)
           end
         },
