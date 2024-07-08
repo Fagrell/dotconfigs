@@ -70,6 +70,10 @@ in
       cmp-nvim-lsp
       cmp-buffer
       cmp-path
+      cmp-buffer
+      cmp-vsnip
+      vim-vsnip
+      cmp-nvim-lua
     ];
 
     extraConfig =

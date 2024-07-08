@@ -1,6 +1,11 @@
 local cmp = require('cmp')
 
 cmp.setup({
+  snippet = {
+     expand = function(args)
+       vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+     end,
+   },
   mapping = {
     ['<C-y>'] = cmp.mapping.confirm({select = false}),
     ['<C-e>'] = cmp.mapping.abort(),
@@ -28,7 +33,8 @@ cmp.setup({
     { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
     { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
     { name = 'buffer', keyword_length = 2 },        -- source current buffer
-    { name = 'cmdline', keyword_length = 2 },        -- cmdline
+    { name = 'cmdline', keyword_length = 2 },       -- cmdline
+    { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip
   },
   window = {
       completion = cmp.config.window.bordered(),
