@@ -11,33 +11,34 @@
   home.homeDirectory = "/home/alex";
 
   home.packages = [
-    pkgs.ripgrep
-    pkgs.watchexec
-    pkgs.eza
-    pkgs.tldr
     pkgs.bat
     pkgs.bit
-    pkgs.git
-    pkgs.cmake
-    pkgs.just
-    pkgs.cloc
-    pkgs.nmap
+    pkgs.cargo
+    pkgs.chromium
     pkgs.clang
     pkgs.clang-tools
-    pkgs.cargo
+    pkgs.cloc
+    pkgs.cmake
+    pkgs.dart
+    pkgs.delta
+    pkgs.direnv
+    pkgs.eza
+    pkgs.fd
+    pkgs.git
+    pkgs.inetutils
+    pkgs.just
+    pkgs.nmap
+    pkgs.ripgrep
+    pkgs.rust-analyzer
     pkgs.rustc
     pkgs.rustfmt
-    pkgs.fd
-    pkgs.xclip
-    pkgs.inetutils
-    pkgs.rust-analyzer
-    pkgs.direnv
-    pkgs.chromium
-    pkgs.delta
+    pkgs.tldr
     pkgs.unzip
+    pkgs.watchexec
+    pkgs.xclip
   ];
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
   programs.home-manager.enable = true;
   home.sessionVariables = {
     CHROME_EXECUTABLE = pkgs.chromium.outPath + "/bin/chromium";

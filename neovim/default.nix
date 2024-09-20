@@ -64,6 +64,7 @@ in
       oil-nvim
       nvim-web-devicons
       lualine-nvim
+      flutter-tools-nvim
 
       # Completion
       nvim-cmp

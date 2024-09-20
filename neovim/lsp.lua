@@ -9,6 +9,17 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  -- Enable formatting on save if the LSP server supports it
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("LspFormatting", { clear = true }),
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format({ async = false })
+      end,
+    })
+  end
+
   local opts = { noremap=true, silent=true }
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
